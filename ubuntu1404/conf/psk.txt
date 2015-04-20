@@ -1,0 +1,6 @@
+#broadband
+137.189.192.200 ipsec-vpn
+137.189.192.201 ipsec-vpn
+137.189.192.202 ipsec-vpn
+137.189.192.203 ipsec-vpn
+137.189.192.204 ipsec-vpn
