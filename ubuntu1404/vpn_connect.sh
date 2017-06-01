@@ -4,11 +4,23 @@ if [[ "$UID" != 0 ]]; then
 	echo "For normal user, please use sudo."
 	exit 1
 fi
+
+echo -e "\n##################"
+echo "# disconnecting..."
+echo -e "##################\n"
+. vpn_disconnect.sh
+sleep 3
+
+echo -e "\n###############"
+echo "# connecting..."
+echo -e "###############\n"
 echo "Getting default device and gateway..."
 TMP=$(ip route | sed -n -E "s/^default.*via ([0-9.]+).*dev ([[:alnum:]]+).*$/\1#\2/p")
 echo $TMP > /tmp/vpn_dev_gw
-GW=$(echo $TMP | awk -F# '{print $1}')
-DEV=$(echo $TMP | awk -F# '{print $2}')
+#GW=$(echo $TMP | awk -F# '{print $1}')
+GW=192.168.1.1
+#DEV=$(echo $TMP | awk -F# '{print $2}')
+DEV=wlan0
 echo "Device: $DEV"
 echo "Gateway: $GW"
 echo ""

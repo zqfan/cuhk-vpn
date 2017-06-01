@@ -5,12 +5,15 @@ if [[ "$UID" != 0 ]]; then
 	exit 1
 fi
 echo "Getting original device and gateway..."
-GW=$(awk -F# '{print $1}' /tmp/vpn_dev_gw)
-DEV=$(awk -F# '{print $2}' /tmp/vpn_dev_gw)
+#GW=$(awk -F# '{print $1}' /tmp/vpn_dev_gw)
+GW=192.168.1.1
+#DEV=$(awk -F# '{print $2}' /tmp/vpn_dev_gw)
+DEV=wlan0
 echo "Device: $DEV"
 echo "Gateway: $GW"
 echo ""
 echo "Disconnecting VPN..."
+service xl2tpd restart
 echo "d" > /var/run/xl2tpd/l2tp-control
 echo "Done."
 echo ""
